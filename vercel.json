@@ -2,6 +2,13 @@
   "version": 2,
   "builds": [
     {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "public"
+      }
+    },
+    {
       "src": "api/server.js",
       "use": "@vercel/node"
     }
@@ -24,11 +31,14 @@
       "dest": "/frontend/$1"
     },
     {
+      "handle": "filesystem"
+    },
+    {
       "src": "/(.*\\.(css|js|png|jpg|jpeg|gif|webp|svg|ico|woff|woff2|ttf|eot|json))",
       "dest": "/$1"
     },
     {
-      "src": "/",
+      "src": "/(.*)",
       "dest": "/public-site-enhanced.html"
     }
   ],
