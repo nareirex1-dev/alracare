@@ -83,7 +83,13 @@ async function apiCall(endpoint, options = {}) {
     }
 }
 
-// Export for use in other files
+// Make functions available globally for browser usage
+if (typeof window !== 'undefined') {
+    window.API_CONFIG = API_CONFIG;
+    window.apiCall = apiCall;
+}
+
+// Export for Node.js modules (if needed)
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { API_CONFIG, apiCall };
 }
