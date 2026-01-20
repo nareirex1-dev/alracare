@@ -10,13 +10,6 @@ let editingOptionData = null;
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Alra Care Admin Panel initialized');
     
-    // Check if apiCall is available
-    if (typeof window.apiCall === 'undefined') {
-        console.error('apiCall function is not available. Make sure config.js is loaded first.');
-        showNotification('⚠️ Error: API configuration not loaded', 'error');
-        return;
-    }
-    
     // Load data from API
     loadData();
     
@@ -41,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
 async function loadData() {
     try {
         // Load bookings from API
-        const bookingsResponse = await window.apiCall(window.API_CONFIG.ENDPOINTS.BOOKINGS);
+        const bookingsResponse = await apiCall(API_CONFIG.ENDPOINTS.BOOKINGS);
         if (bookingsResponse.success) {
             bookings = bookingsResponse.data.map(booking => ({
                 bookingId: booking.id,
@@ -67,19 +60,19 @@ async function loadData() {
         }
         
         // Load services from API
-        const servicesResponse = await window.apiCall(window.API_CONFIG.ENDPOINTS.SERVICES);
+        const servicesResponse = await apiCall(API_CONFIG.ENDPOINTS.SERVICES);
         if (servicesResponse.success) {
             services = servicesResponse.data;
         }
         
         // Load gallery from API
-        const galleryResponse = await window.apiCall(window.API_CONFIG.ENDPOINTS.GALLERY);
+        const galleryResponse = await apiCall(API_CONFIG.ENDPOINTS.GALLERY);
         if (galleryResponse.success) {
             gallery = galleryResponse.data;
         }
         
         // Load settings from API
-        const settingsResponse = await window.apiCall(window.API_CONFIG.ENDPOINTS.SETTINGS);
+        const settingsResponse = await apiCall(API_CONFIG.ENDPOINTS.SETTINGS);
         if (settingsResponse.success) {
             settings = settingsResponse.data;
         }
@@ -93,7 +86,7 @@ async function loadData() {
 
 async function saveBooking(bookingData) {
     try {
-        const response = await window.apiCall(window.API_CONFIG.ENDPOINTS.BOOKINGS, {
+        const response = await apiCall(API_CONFIG.ENDPOINTS.BOOKINGS, {
             method: 'POST',
             body: JSON.stringify(bookingData)
         });
@@ -111,7 +104,7 @@ async function saveBooking(bookingData) {
 
 async function updateBookingStatusAPI(bookingId, newStatus) {
     try {
-        const response = await window.apiCall(window.API_CONFIG.ENDPOINTS.BOOKING_STATUS(bookingId), {
+        const response = await apiCall(API_CONFIG.ENDPOINTS.BOOKING_STATUS(bookingId), {
             method: 'PUT',
             body: JSON.stringify({ status: newStatus })
         });
@@ -129,7 +122,7 @@ async function updateBookingStatusAPI(bookingId, newStatus) {
 
 async function deleteBookingAPI(bookingId) {
     try {
-        const response = await window.apiCall(window.API_CONFIG.ENDPOINTS.BOOKING_BY_ID(bookingId), {
+        const response = await apiCall(API_CONFIG.ENDPOINTS.BOOKING_BY_ID(bookingId), {
             method: 'DELETE'
         });
         
@@ -147,7 +140,7 @@ async function deleteBookingAPI(bookingId) {
 async function saveServiceCategory(categoryData) {
     try {
         // For creating new category, we need to use service_categories endpoint
-        const response = await window.apiCall(window.API_CONFIG.ENDPOINTS.SERVICES, {
+        const response = await apiCall(API_CONFIG.ENDPOINTS.SERVICES, {
             method: 'POST',
             body: JSON.stringify(categoryData)
         });
@@ -165,7 +158,7 @@ async function saveServiceCategory(categoryData) {
 
 async function saveServiceOption(optionData) {
     try {
-        const response = await window.apiCall(window.API_CONFIG.ENDPOINTS.SERVICES, {
+        const response = await apiCall(API_CONFIG.ENDPOINTS.SERVICES, {
             method: 'POST',
             body: JSON.stringify(optionData)
         });
@@ -183,7 +176,7 @@ async function saveServiceOption(optionData) {
 
 async function updateServiceOption(serviceId, optionData) {
     try {
-        const response = await window.apiCall(window.API_CONFIG.ENDPOINTS.SERVICE_BY_ID(serviceId), {
+        const response = await apiCall(API_CONFIG.ENDPOINTS.SERVICE_BY_ID(serviceId), {
             method: 'PUT',
             body: JSON.stringify(optionData)
         });
@@ -201,7 +194,7 @@ async function updateServiceOption(serviceId, optionData) {
 
 async function deleteServiceAPI(serviceId) {
     try {
-        const response = await window.apiCall(window.API_CONFIG.ENDPOINTS.SERVICE_BY_ID(serviceId), {
+        const response = await apiCall(API_CONFIG.ENDPOINTS.SERVICE_BY_ID(serviceId), {
             method: 'DELETE'
         });
         
@@ -218,7 +211,7 @@ async function deleteServiceAPI(serviceId) {
 
 async function saveGalleryImage(imageData) {
     try {
-        const response = await window.apiCall(window.API_CONFIG.ENDPOINTS.GALLERY, {
+        const response = await apiCall(API_CONFIG.ENDPOINTS.GALLERY, {
             method: 'POST',
             body: JSON.stringify(imageData)
         });
@@ -236,7 +229,7 @@ async function saveGalleryImage(imageData) {
 
 async function deleteGalleryImageAPI(imageId) {
     try {
-        const response = await window.apiCall(window.API_CONFIG.ENDPOINTS.GALLERY_BY_ID(imageId), {
+        const response = await apiCall(API_CONFIG.ENDPOINTS.GALLERY_BY_ID(imageId), {
             method: 'DELETE'
         });
         
@@ -271,7 +264,7 @@ async function saveSettings(settingsData) {
             settingsToUpdate['social_tiktok'] = JSON.stringify(settingsData.social.tiktok);
         }
         
-        const response = await window.apiCall(window.API_CONFIG.ENDPOINTS.SETTINGS, {
+        const response = await apiCall(API_CONFIG.ENDPOINTS.SETTINGS, {
             method: 'PUT',
             body: JSON.stringify({ settings: settingsToUpdate })
         });
