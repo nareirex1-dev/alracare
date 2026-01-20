@@ -52,7 +52,7 @@ async function checkBookingStatus(bookingId) {
     try {
         showNotification('⏳ Mengecek status booking...', 'info');
         
-        const response = await apiCall(API_CONFIG.ENDPOINTS.BOOKING_CHECK(bookingId));
+        const response = await window.apiCall(window.API_CONFIG.ENDPOINTS.BOOKING_CHECK(bookingId));
         
         if (response.success && response.data) {
             displayBookingStatus(response.data);
@@ -253,10 +253,10 @@ async function loadBookingHistory(phone, status = 'all') {
         showNotification('⏳ Memuat riwayat booking...', 'info');
         
         const endpoint = status === 'all' 
-            ? API_CONFIG.ENDPOINTS.BOOKING_HISTORY(phone)
-            : API_CONFIG.ENDPOINTS.BOOKING_HISTORY(phone) + `?status=${status}`;
+            ? window.API_CONFIG.ENDPOINTS.BOOKING_HISTORY(phone)
+            : window.API_CONFIG.ENDPOINTS.BOOKING_HISTORY(phone) + `?status=${status}`;
         
-        const response = await apiCall(endpoint);
+        const response = await window.apiCall(endpoint);
         
         if (response.success) {
             displayBookingHistory(response.data, phone, status);
@@ -464,7 +464,7 @@ async function submitReschedule() {
         
         showNotification('⏳ Menyimpan jadwal baru...', 'info');
         
-        const response = await apiCall(API_CONFIG.ENDPOINTS.BOOKING_RESCHEDULE(bookingId), {
+        const response = await window.apiCall(window.API_CONFIG.ENDPOINTS.BOOKING_RESCHEDULE(bookingId), {
             method: 'PUT',
             body: JSON.stringify({
                 appointment_date: date,
@@ -498,7 +498,7 @@ function downloadBookingPDF(bookingId) {
     
     setTimeout(async () => {
         try {
-            const response = await apiCall(API_CONFIG.ENDPOINTS.BOOKING_CHECK(bookingId));
+            const response = await window.apiCall(window.API_CONFIG.ENDPOINTS.BOOKING_CHECK(bookingId));
             
             if (response.success && response.data) {
                 const booking = response.data;
