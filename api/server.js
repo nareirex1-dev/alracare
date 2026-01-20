@@ -35,14 +35,6 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Serve static files from frontend directory
-app.use(express.static(path.join(__dirname, '../frontend')));
-
-// Catch-all route to serve index.html for SPA
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/index.html'));
-});
-
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error('Error:', err);
