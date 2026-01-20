@@ -595,8 +595,8 @@
                                 <i class="fas fa-envelope"></i>
                             </div>
                             <div class="contact-text">
-                                <a href="/cdn-cgi/l/email-protection#92e0f3fafff3f6e0f3fff3f6faf3fcf3e1e5fbfcd2f5fff3fbfebcf1fdff" class="contact-link">
-                                    <span class="__cf_email__" data-cfemail="7604171e1b171204171b17121e17181705011f1836111b171f1a5815191b">[email&#160;protected]</span>
+                                <a href="/cdn-cgi/l/email-protection#2250434a4f434650434f43464a434c4351554b4c62454f434b4e0c414d4f" class="contact-link">
+                                    <span class="__cf_email__" data-cfemail="512330393c303523303c303539303f302226383f11363c30383d7f323e3c">[email&#160;protected]</span>
                                 </a>
                             </div>
                         </div>
@@ -661,14 +661,6 @@
         </div>
     </div>
 
-    <!-- Notification Center Modal (Phase 3) -->
-    <div id="notificationCenterModal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="modalManager.closeAll()">&times;</span>
-            <div id="notificationCenterContent"></div>
-        </div>
-    </div>
-
     <!-- Notification -->
     <div id="notification" class="notification">
         <span id="notificationText"></span>
@@ -677,10 +669,18 @@
         </button>
     </div>
 
-    <!-- SCRIPTS - IMPORTANT: config.js MUST be loaded FIRST -->
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="config.js"></script>
     <script src="frontend/public-script-api.js"></script>
     <script src="frontend/public-script-enhanced.js"></script>
-    <script src="frontend/notification-center.js"></script>
 </body>
 </html>
+
+    <!-- Notification Center Modal (Phase 3) -->
+    <div id="notificationCenterModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="modalManager.closeAll()">&times;</span>
+            <div id="notificationCenterContent"></div>
+        </div>
+    </div>
+
+    <script src="frontend/notification-center.js"></script>
