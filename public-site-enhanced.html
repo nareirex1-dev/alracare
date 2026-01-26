@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alra Care - Kesehatan & Kecantikan Profesional</title>
     <meta name="description" content="Klinik Alra Care - Pusat Perawatan Luka Modern, Kecantikan, Sunat Modern, dan Hipnoterapi di Pontianak">
+    <link rel="icon" href="data:,">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="frontend/public-style.css">
     <link rel="stylesheet" href="frontend/notification-styles.css">
@@ -595,9 +596,7 @@
                                 <i class="fas fa-envelope"></i>
                             </div>
                             <div class="contact-text">
-                                <a href="/cdn-cgi/l/email-protection#2250434a4f434650434f43464a434c4351554b4c62454f434b4e0c414d4f" class="contact-link">
-                                    <span class="__cf_email__" data-cfemail="512330393c303523303c303539303f302226383f11363c30383d7f323e3c">[email&#160;protected]</span>
-                                </a>
+                                <a href="/cdn-cgi/l/email-protection#4c2d203e2d2f2d3e290c2b212d2520622f2321" class="contact-link"><span class="__cf_email__" data-cfemail="6a0b06180b090b180f2a0d070b030644090507">[email&#160;protected]</span></a>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -661,20 +660,6 @@
         </div>
     </div>
 
-    <!-- Notification -->
-    <div id="notification" class="notification">
-        <span id="notificationText"></span>
-        <button class="notification-close" onclick="this.parentElement.classList.remove('show')">
-            <i class="fas fa-times"></i>
-        </button>
-    </div>
-
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="config.js"></script>
-    <script src="frontend/public-script-api.js"></script>
-    <script src="frontend/public-script-enhanced.js"></script>
-</body>
-</html>
-
     <!-- Notification Center Modal (Phase 3) -->
     <div id="notificationCenterModal" class="modal">
         <div class="modal-content">
@@ -683,4 +668,18 @@
         </div>
     </div>
 
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <span id="notificationText"></span>
+        <button class="notification-close" onclick="this.parentElement.classList.remove('show')">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <!-- Load scripts in correct order -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="public/config.js"></script>
+    <script src="public/public-script-api.js"></script>
+    <script src="public/public-script-enhanced.js"></script>
     <script src="frontend/notification-center.js"></script>
+</body>
+</html>
