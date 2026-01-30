@@ -1,0 +1,34 @@
+.
+├── BACKEND_ANALYSIS_REPORT.md
+├── CHANGELOG.md
+├── DEPLOYMENT_GUIDE.md
+├── README.md
+├── STRUCTURE.txt
+├── admin-login.html
+├── admin-site.html
+├── api
+│   ├── config
+│   ├── index.js
+│   ├── middleware
+│   ├── routes
+│   └── utils
+├── database
+│   ├── database.sql
+│   └── notifications_schema.sql
+├── docs
+├── frontend
+│   ├── admin-script.js
+│   ├── admin-style.css
+│   ├── manifest.json
+│   ├── notification-center.js
+│   ├── notification-styles.css
+│   ├── public-script-api.js
+│   ├── public-script-enhanced.js
+│   ├── public-style.css
+│   └── service-worker.js
+├── package-lock.json
+├── package.json
+├── public-site-enhanced.html
+└── vercel.json
+
+9 directories, 23 files

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Alra Care Clinic</title>
+    <link rel="stylesheet" href="/frontend/admin-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <i class="fas fa-user-shield"></i>
+                <h1>Admin Login</h1>
+                <p>Alra Care Clinic Management</p>
+            </div>
+            
+            <form id="login-form" class="login-form">
+                <div class="form-group">
+                    <label for="username">
+                        <i class="fas fa-user"></i> Username
+                    </label>
+                    <input type="text" id="username" name="username" required autocomplete="username">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">
+                        <i class="fas fa-lock"></i> Password
+                    </label>
+                    <input type="password" id="password" name="password" required autocomplete="current-password">
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <label>
+                        <input type="checkbox" id="remember" name="remember">
+                        <span>Remember me</span>
+                    </label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </form>
+            
+            <div id="login-message" class="login-message"></div>
+            
+            <div class="login-footer">
+                <a href="/">
+                    <i class="fas fa-arrow-left"></i> Kembali ke Website
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE_URL = window.location.origin + '/api';
+        
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const messageDiv = document.getElementById('login-message');
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            
+            // Disable button
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
+            
+            const formData = {
+                username: document.getElementById('username').value,
+                password: document.getElementById('password').value
+            };
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify(formData)
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Store token in localStorage for backward compatibility
+                    if (data.token) {
+                        localStorage.setItem('auth_token', data.token);
+                        localStorage.setItem('user', JSON.stringify(data.user));
+                    }
+                    
+                    messageDiv.className = 'login-message success';
+                    messageDiv.innerHTML = '<i class="fas fa-check-circle"></i> Login berhasil! Redirecting...';
+                    
+                    // Redirect to admin panel
+                    setTimeout(() => {
+                        window.location.href = '/admin';
+                    }, 1000);
+                } else {
+                    throw new Error(data.message || 'Login gagal');
+                }
+            } catch (error) {
+                messageDiv.className = 'login-message error';
+                messageDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${error.message}`;
+                
+                // Re-enable button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
+            }
+        });
+        
+        // Check if already logged in
+        window.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem('auth_token');
+            if (token) {
+                try {
+                    const response = await fetch(`${API_BASE_URL}/auth/verify`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        },
+                        credentials: 'include'
+                    });
+                    
+                    const data = await response.json();
+                    if (data.success) {
+                        window.location.href = '/admin';
+                    }
+                } catch (error) {
+                    // Token invalid, stay on login page
+                    localStorage.removeItem('auth_token');
+                    localStorage.removeItem('user');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
