@@ -1,5 +1,7 @@
 {
   "version": 2,
+  "buildCommand": "echo 'Build completed'",
+  "outputDirectory": ".",
   "rewrites": [
     {
       "source": "/api/(.*)",
@@ -40,5 +42,7 @@
         }
       ]
     }
-  ]
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
 }
