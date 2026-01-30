@@ -1,11 +1,5 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "api/**/*.js",
-      "use": "@vercel/node"
-    }
-  ],
   "rewrites": [
     {
       "source": "/api/(.*)",
@@ -20,11 +14,7 @@
       "destination": "/admin-site.html"
     },
     {
-      "source": "/frontend/(.*)",
-      "destination": "/frontend/$1"
-    },
-    {
-      "source": "/(.*)",
+      "source": "/",
       "destination": "/public-site-enhanced.html"
     }
   ],
@@ -50,8 +40,5 @@
         }
       ]
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  ]
 }
