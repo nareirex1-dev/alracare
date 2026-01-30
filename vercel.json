@@ -6,35 +6,28 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/index.js"
+      "source": "/api/(.*)",
+      "destination": "/api/index.js"
     },
     {
-      "src": "/admin-login",
-      "dest": "/admin-login.html"
+      "source": "/admin-login",
+      "destination": "/admin-login.html"
     },
     {
-      "src": "/admin",
-      "dest": "/admin-site.html"
+      "source": "/admin",
+      "destination": "/admin-site.html"
     },
     {
-      "src": "/frontend/(.*)",
-      "dest": "/frontend/$1"
+      "source": "/frontend/(.*)",
+      "destination": "/frontend/$1"
     },
     {
-      "src": "/(.*\\.(css|js|png|jpg|jpeg|gif|webp|svg|ico|woff|woff2|ttf|eot|json))",
-      "dest": "/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/public-site-enhanced.html"
+      "source": "/(.*)",
+      "destination": "/public-site-enhanced.html"
     }
   ],
-  "env": {
-    "NODE_ENV": "production"
-  },
   "headers": [
     {
       "source": "/api/(.*)",
@@ -57,5 +50,8 @@
         }
       ]
     }
-  ]
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
 }
