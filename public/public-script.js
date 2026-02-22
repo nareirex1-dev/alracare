@@ -159,7 +159,13 @@ async function loadGalleryFromAPI() {
         const getImgPath = (url) => {
             if (!url) return '/public/images/placeholder.webp';
             const raw = (url + '').replace(/^\.\//, '');
-            return raw.startsWith('/') ? raw : '/public/' + (raw.startsWith('images/') ? raw : 'images/' + raw);
+            
+            if (raw.startsWith('/public/')) return raw;
+            if (raw.startsWith('public/')) return '/' + raw;
+            if (raw.startsWith('/')) return raw;
+            if (raw.startsWith('images/')) return '/public/' + raw;
+            
+            return '/public/images/' + raw;
         };
 
         if (loadingEl) loadingEl.remove();
@@ -179,7 +185,13 @@ async function loadGalleryFromAPI() {
         const getImgPath = (url) => {
             if (!url) return '/public/images/placeholder.webp';
             const raw = (url + '').replace(/^\.\//, '');
-            return raw.startsWith('/') ? raw : '/public/' + (raw.startsWith('images/') ? raw : 'images/' + raw);
+            
+            if (raw.startsWith('/public/')) return raw;
+            if (raw.startsWith('public/')) return '/' + raw;
+            if (raw.startsWith('/')) return raw;
+            if (raw.startsWith('images/')) return '/public/' + raw;
+            
+            return '/public/images/' + raw;
         };
         grid.innerHTML = fallbackGallery.map(item => `
             <div class="gallery-item">
@@ -1328,7 +1340,7 @@ function showBookingConfirmation(bookingData) {
                     <p>Hubungi kami via WhatsApp:</p>
                     <div class="whatsapp-number">
                         <button class="whatsapp-btn large" onclick="contactViaWhatsApp('${bookingData.id}')">
-                            <i class="fa-brands fa-whatsapp"></i>
+                            <i class="fa-brands fab fa-whatsapp"></i>
                             6281381223811
                         </button>
                     </div>
@@ -1342,7 +1354,7 @@ function showBookingConfirmation(bookingData) {
             
             <div class="confirmation-actions">
                 <button class="cta-button whatsapp-btn" onclick="contactViaWhatsApp('${bookingData.id}')">
-                    <i class="fa-brands fa-whatsapp"></i> Hubungi via WhatsApp
+                    <i class="fa-brands fab fa-whatsapp"></i> Hubungi via WhatsApp
                 </button>
                 <button class="cta-button" onclick="modalManager.closeAll(); showNotification('Terima kasih telah membooking layanan kami!', 'success')">
                     <i class="fas fa-check"></i> Tutup & Selesai
@@ -1548,7 +1560,7 @@ function displayBookingStatus(booking) {
                     <i class="fas fa-download"></i> Download Bukti
                 </button>
                 <button type="button" class="cta-button" onclick="contactViaWhatsApp('${booking.id}')">
-                    <i class="fa-brands fa-whatsapp"></i> Hubungi Klinik
+                    <i class="fa-brands fab fa-whatsapp"></i> Hubungi Klinik
                 </button>
             </div>
         </div>
