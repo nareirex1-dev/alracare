@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alra Care - Portal Pilihan</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .portal-container {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .portal-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+            animation: slideDown 0.6s ease;
+        }
+
+        .portal-header h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .portal-header p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+
+        .portal-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .portal-card {
+            background: white;
+            border-radius: 20px;
+            padding: 50px 30px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            animation: slideUp 0.6s ease;
+        }
+
+        .portal-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+        }
+
+        .portal-card .icon {
+            font-size: 80px;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .portal-card h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .portal-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .portal-card .btn {
+            display: inline-block;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .portal-card .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .portal-card .btn:active {
+            transform: translateY(0);
+        }
+
+        .portal-footer {
+            text-align: center;
+            color: white;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .portal-footer a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid white;
+        }
+
+        .portal-footer a:hover {
+            opacity: 1;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .portal-header h1 {
+                font-size: 32px;
+            }
+
+            .portal-header p {
+                font-size: 16px;
+            }
+
+            .portal-card {
+                padding: 30px 20px;
+            }
+
+            .portal-card .icon {
+                font-size: 60px;
+            }
+
+            .portal-card h2 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="portal-container">
+        <!-- Header -->
+        <div class="portal-header">
+            <h1>🏥 Alra Care</h1>
+            <p>Sistem Manajemen Klinik Terpadu</p>
+        </div>
+
+        <!-- Portal Options -->
+        <div class="portal-options">
+            <!-- Public Portal Card -->
+            <div class="portal-card">
+                <div class="icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h2>Portal Publik</h2>
+                <p>Kunjungi website resmi kami. Lihat layanan, buat booking, cek riwayat booking, dan notifikasi bookingmu.</p>
+                <a href="/public-site" class="btn">
+                    <i class="fas fa-arrow-right me-2"></i>Masuk Sebagai Publik
+                </a>
+            </div>
+
+            <!-- Admin Portal Card -->
+            <div class="portal-card">
+                <div class="icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h2>Portal Admin</h2>
+                <p>Akses panel admin untuk mengelola booking, layanan, galeri, dan pengaturan klinik Anda.</p>
+                <a href="/admin-login" class="btn">
+                    <i class="fas fa-arrow-right me-2"></i>Masuk Sebagai Admin
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="portal-footer">
+            <p>&copy; 2026 Alra Care Clinic. All rights reserved.</p>
+            <p style="margin-top: 10px;">
+                <a href="/public-site#contact">Hubungi Kami</a> | 
+                <a href="https://wa.me/6281381223811" target="_blank">WhatsApp</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Prevent redirect loops and ensure clean navigation -->
+    <script>
+        // Force unregister old service workers to prevent redirect loops
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                for (let registration of registrations) {
+                    console.log('Unregistering old service worker:', registration.scope);
+                    registration.unregister().then(() => {
+                        console.log('Service worker unregistered successfully');
+                    });
+                }
+            }).catch(err => {
+                console.error('Error unregistering service workers:', err);
+            });
+
+            // Clear all caches to prevent stale redirects
+            caches.keys().then(function(names) {
+                for (let name of names) {
+                    console.log('Clearing cache:', name);
+                    caches.delete(name);
+                }
+            }).catch(err => {
+                console.error('Error clearing caches:', err);
+            });
+        }
+
+        // Clear browser history to prevent back button loops
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+
+        // Ensure links work properly
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Allow normal navigation
+                    console.log('Link clicked:', this.href);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

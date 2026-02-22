@@ -1,0 +1,46 @@
+{
+  "name": "alracare-clinic",
+  "version": "3.0.0",
+  "description": "Alra Care Clinic Management System - Complete with booking, notifications, and admin panel",
+  "main": "api/server.js",
+  "scripts": {
+    "start": "node api/server.js",
+    "dev": "nodemon api/server.js",
+    "build": "echo 'Build completed - static files ready'",
+    "vercel-build": "echo 'Vercel build completed'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "clinic",
+    "booking",
+    "healthcare",
+    "notification",
+    "management"
+  ],
+  "author": "Alra Care",
+  "license": "PROPRIETARY",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.38.4",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "date-fns": "^3.6.0",
+    "date-fns-tz": "^3.2.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.5.1",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
+    "uuid": "^13.0.0",
+    "winston": "^3.19.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.0.2"
+  },
+  "engines": {
+    "node": ">=24.0.0",
+    "npm": ">=6.0.0"
+  }
+}
