@@ -144,17 +144,20 @@ async function loadGalleryFromAPI() {
     if (!grid) return;
 
     const fallbackGallery = [
-        { title: 'Tampak Depan', image_url: './images/tampakdepan.webp' },
-        { title: 'Ruang Tunggu', image_url: './images/ruang_tunggu_1.webp' },
-        { title: 'Ruang Tunggu', image_url: './images/ruang_tunggu_2.webp' },
-        { title: 'Ruang Kecantikan', image_url: './images/ruang_kecantikan.webp' },
-        { title: 'Ruang Luka', image_url: './images/ruang_luka.webp' },
-        { title: 'Tim Perawat', image_url: './images/TimMedis.webp' }
+        { title: 'Tampak Depan', image_url: '/public/images/tampakdepan.webp' },
+        { title: 'Ruang Tunggu', image_url: '/public/images/ruang_tunggu_1.webp' },
+        { title: 'Ruang Tunggu', image_url: '/public/images/ruang_tunggu_2.webp' },
+        { title: 'Ruang Kecantikan', image_url: '/public/images/ruang_kecantikan.webp' },
+        { title: 'Ruang Luka', image_url: '/public/images/ruang_luka.webp' },
+        { title: 'Tim Perawat', image_url: '/public/images/TimMedis.webp' }
     ];
 
     try {
         const response = await window.apiCall(window.API_CONFIG.ENDPOINTS.GALLERY);
-        const items = (response && response.success && response.data) ? response.data : fallbackGallery;
+        const apiItems = response && response.success && Array.isArray(response.data)
+            ? response.data
+            : [];
+        const items = apiItems.length > 0 ? apiItems : fallbackGallery;
         
         const getImgPath = (url) => {
             if (!url) return '/public/images/placeholder.webp';
